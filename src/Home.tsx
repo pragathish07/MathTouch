@@ -1,4 +1,5 @@
 import { ColorSwatch, Group } from '@mantine/core';
+import './index.css';
 
 declare global {
     interface Window {
@@ -202,49 +203,60 @@ export default function Home() {
             });
         }
     };
+    /* window.addEventListener('drag', () => {
+        document.body.style.cursor = 'grabbing';
+      }, true); */
 
-    return (
+      return (
         <>
-            <div className='grid grid-cols-3 gap-2'>
+            <div className="grid grid-cols-3 gap-4 p-4 bg-gray-100 rounded-lg shadow-lg">
                 <button
                     onClick={() => setReset(true)}
-                    className='z-20 bg-black text-white'
+                    className="z-20 px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-500 transition duration-200"
                 >
                     Reset
                 </button>
-                <Group className='z-20'>
+                
+                <Group className="z-20 flex items-center justify-center gap-2">
                     {SWATCHES.map((swatch) => (
-                        <ColorSwatch key={swatch} color={swatch} onClick={() => setColor(swatch)} />
+                        <ColorSwatch
+                            key={swatch}
+                            color={swatch}
+                            onClick={() => setColor(swatch)}
+                            className="w-8 h-8 rounded-full cursor-pointer hover:opacity-75 transition-opacity duration-150"
+                        />
                     ))}
                 </Group>
+                
                 <button
                     onClick={runRoute}
-                    className='z-20 bg-black text-white'
+                    className="z-20 px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition duration-200"
                 >
                     Run
                 </button>
             </div>
+    
             <canvas
                 ref={canvasRef}
-                id='canvas'
-                className='absolute top-0 left-0 w-full h-full'
+                id="canvas"
+                className="absolute top-0 left-0 w-full h-full border border-gray-200 rounded-lg shadow-inner"
                 onMouseDown={startDrawing}
                 onMouseMove={draw}
                 onMouseUp={stopDrawing}
                 onMouseOut={stopDrawing}
             />
-
+    
             {latexExpression && latexExpression.map((latex, index) => (
                 <Draggable
                     key={index}
                     defaultPosition={latexPosition}
                     onStop={(e, data) => setLatexPosition({ x: data.x, y: data.y })}
                 >
-                    <div className="absolute p-2 text-white rounded shadow-md">
-                        <div className="latex-content">{latex}</div>
+                    <div className="absolute p-2 bg-gray-800 text-white rounded-lg shadow-md">
+                        <div className="latex-content font-mono text-sm">{latex}</div>
                     </div>
                 </Draggable>
             ))}
         </>
     );
-}
+}    
