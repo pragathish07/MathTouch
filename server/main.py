@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import uvicorn
 from apps.calculator.route import router as calculator_router
 from constants import SERVER_URL, PORT, ENV
@@ -23,7 +24,7 @@ app.add_middleware(
 
 @app.get('/')
 async def root():
-    return {"message": "Server is running"}
+    return JSONResponse(content={"message": "Hello from FastAPI on Vercel!"})
 
 app.include_router(calculator_router, prefix="/calculate", tags=["calculate"])
 
