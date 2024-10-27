@@ -1,4 +1,4 @@
-/* import { ColorSwatch, Group } from '@mantine/core';
+import { ColorSwatch, Group } from '@mantine/core';
 import './index.css';
 
 declare global {
@@ -203,7 +203,7 @@ export default function Home() {
             });
         }
     };
-    /* window.addEventListener('drag', () => {
+     window.addEventListener('drag', () => {
         document.body.style.cursor = 'grabbing';
       }, true); 
 
@@ -259,9 +259,9 @@ export default function Home() {
             ))}
         </>
     );
-}     */
+}    
 
-
+/* 
     import { ColorSwatch, Group } from '@mantine/core';
 import './index.css';
 
@@ -534,3 +534,4 @@ export default function Home() {
         </>
     );
 }
+ */
